@@ -39,19 +39,19 @@ RSpec.describe User, type: :model do
       end
     end
 
-      it "requires a password" do
-        u = User.new
-        u.valid?
-        expect(u.errors).to have_key(:password)
-      end
-
-      it "requires a password at least 6 characters long" do
-        u = User.new password: "12345"
-        u.valid?
-        expect(u.errors).to have_key(:password)
-      end
-
+    it "requires a password" do
+      u = User.new
+      u.valid?
+      expect(u.errors).to have_key(:password)
     end
+
+    it "requires a password at least 6 characters long" do
+      u = User.new password: "12345"
+      u.valid?
+      expect(u.errors).to have_key(:password)
+    end
+
+  end
 
     describe ".full_name" do
       it "concatenates the first name and last name" do
