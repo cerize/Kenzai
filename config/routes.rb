@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :users do
-    resources :projects
-  end
+  resources :home, only: [:index]
+
+  resources :users
+
+  resources :projects, except: [:index]
+
+  resources :my_projects, only: [:index]
 
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection

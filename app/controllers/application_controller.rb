@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
     session[:user_id].present?
   end
   helper_method :user_logged_in?
-
+  
+  def authenticate_user
+    redirect_to new_session_path unless session[:user_id]
+  end
 
 end

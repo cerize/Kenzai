@@ -31,7 +31,7 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it "redirects to the user's projects page" do
-        expect(response).to redirect_to(user_projects_path(User.last))
+        expect(response).to redirect_to(my_projects_path)
       end
 
       it "sets a flash notice message" do

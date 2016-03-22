@@ -1,5 +1,14 @@
+
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "Validations" do
+    it "requires a title" do
+      p = Project.new
+      p.valid?
+      expect(p.errors).to have_key(:title)
+    end
+  end
+
 end

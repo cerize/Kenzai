@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email params[:email]
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to user_projects_path(user), notice: "Hello #{user.first_name}!"
+      redirect_to my_projects_path, notice: "Hello #{user.first_name}!"
     else
       flash[:alert] = "Wrong Credentials!"
       render :new

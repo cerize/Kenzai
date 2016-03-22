@@ -20,7 +20,7 @@ RSpec.describe SessionsController, type: :controller do
       end
 
       it "redirects to user's projects path" do
-        expect(response).to redirect_to(user_projects_path(user))
+        expect(response).to redirect_to(my_projects_path)
       end
 
       it "sets a flash notice message" do
