@@ -4,7 +4,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   let(:user)    { FactoryGirl.create(:user) }
   let(:user2)   { FactoryGirl.create(:user) }
-  let(:project) { FactoryGirl.create(:project, {creator: user}) }
+  let(:project1) { FactoryGirl.create(:project) }
 
   describe 'with user signed in' do
     before { signin(user) }
@@ -80,26 +80,32 @@ RSpec.describe ProjectsController, type: :controller do
     describe "#show" do
       context "current user is a member of the project" do
         before do
-          post :create, project: FactoryGirl.attributes_for(:project, creator: user)
-          get :show, id: Project.last.id
+          user.projects << project1
+          get :show, id: project1.id
         end
 
-
         it "finds the object by its id and sets to @project variable" do
-          expect(assigns(:project)).to eq(Project.last)
+          expect(assigns(:project)).to eq(project1)
         end
 
         it "renders the show template" do
-          #expect(response).to render_template(:show)
+          expect(response).to render_template(:show)
         end
 
       end
 
       context "current user is NOT a member of the project" do
-        it "redirects to root path" do
+        before do
           signin(user2)
-          get :show, id: project.id
+          get :show, id: project1.id
+        end
+
+        it "redirects to root path" do
           expect(response).to redirect_to(root_path)
+        end
+
+        it "sets a flash alert" do
+          expect(flash[:alert]).to be
         end
       end
 
@@ -116,7 +122,7 @@ RSpec.describe ProjectsController, type: :controller do
       it "renders the edit template" do
       end
 
-      it "finds the campaign by id and sets it to @campaign instance variable" do
+      it "finds the project by id and sets it to @campaign instance variable" do
       end
     end
 

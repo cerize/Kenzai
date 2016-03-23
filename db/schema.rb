@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322064746) do
+ActiveRecord::Schema.define(version: 20160322160726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20160322064746) do
   create_table "project_assignments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "is_manager"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "is_manager", default: false
   end
 
   add_index "project_assignments", ["project_id"], name: "index_project_assignments_on_project_id", using: :btree

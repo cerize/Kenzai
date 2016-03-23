@@ -6,13 +6,36 @@ class Ability
     #
       user ||= User.new # guest user (not logged in)
 
-      if user.has_role? :super_admin
-        can :manage, :all
+      # if user.has_role? :super_admin
+      #   can :manage, :all
+      # end
+
+      # if user.has_role? :admin
+      #   can :manage, Project
+      # end
+
+      #
+      can :manage, Project do |project|
+        project.creator == user || user.is_manager?(project)
       end
 
-      if user.has_role? :admin
-        can :manage, Project
+      can :read, Project do |project|
+        user.projects.include? project
       end
+
+      can :manage, Sprint do |sprint|
+        sprint.project.creator == user || user.is_manager?(sprint.project)
+      end
+
+      can :read, Sprint do |sprint|
+        user.projects.include? sprint.project
+      end
+
+
+
+      # can :manage, Answer do |answer|
+      #   answer.user == user || answer.question.user == user
+      # end
 
     # The first argument to `can` is the action you are giving the user
     # permission to do.

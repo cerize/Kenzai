@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  
+
   has_secure_password
 
   has_many :project_assignments, dependent: :nullify
@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}".strip.titleize
+  end
+
+#must create a test
+  def is_manager?(project)
+    project_assignments.where("is_manager = ? and project_id = ?", true, project.id) != []
   end
 
 end

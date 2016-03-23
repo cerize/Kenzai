@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user
+  before_action :authorize_management, only: [:edit, :update, :destroy]
+
 
   def new
     @project = Project.new
@@ -22,8 +24,17 @@ class ProjectsController < ApplicationController
     if @project
       render :show
     else
-      redirect_to root_path
+      redirect_to root_path, alert: "Project Not Found"
     end
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   # render nothing: true
@@ -37,4 +48,16 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.find_by_id params[:id]
   end
 
-end
+  def authorize_management
+    unless can? :manage, @project
+      redirect_to root_path, alert: "access denied!"
+    end
+  end
+
+  # def authorize_view
+  #   unless can? :read, @project
+  #     redirect_to root_path, alert: "access denied!"
+  #   end
+  # end
+
+  end

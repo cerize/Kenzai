@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :projects, except: [:index]
 
+  resources :project_assignments, only: [:create, :destroy]
+
   resources :my_projects, only: [:index]
 
   resources :sessions, only: [:new, :create] do

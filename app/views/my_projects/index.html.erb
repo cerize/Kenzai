@@ -1,0 +1,7 @@
+
+<div class="well">
+  <% @projects.each do |project|%>
+  <%= link_to project.title, project_path(project) %>
+  <% end %>
+
+</div>
