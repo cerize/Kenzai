@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :projects, except: [:index]
+  resources :projects, except: [:index] do
+    resources :sprints
+  end
 
   resources :project_assignments, only: [:create, :destroy]
 

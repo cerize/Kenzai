@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
   def show
     find_project
     if @project
+      @sprint = Sprint.new
       render :show
     else
       redirect_to root_path, alert: "Project Not Found"

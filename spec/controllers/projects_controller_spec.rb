@@ -88,6 +88,10 @@ RSpec.describe ProjectsController, type: :controller do
           expect(assigns(:project)).to eq(project1)
         end
 
+        it "instantiates a new Sprint object and sets it to @sprint" do
+          expect(assigns(:sprint)).to be_a_new(Sprint)
+        end
+
         it "renders the show template" do
           expect(response).to render_template(:show)
         end

@@ -2,7 +2,16 @@
 <h1><%= @project.title %></h1>
 
 
-
+<!-- sprints -->
 <h2>Sprints</h2>
 
-<%#link_to "New Sprint", new_sprint_path %>
+<div id="new-sprint-link">
+
+  <%= link_to "New Sprint", new_project_sprint_path(@project),
+  remote: true %>
+</div>
+
+
+<div id="sprint-form"></div>
+
+<!-- end of sprints -->
