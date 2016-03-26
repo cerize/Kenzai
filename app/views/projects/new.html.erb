@@ -1,0 +1,13 @@
+<%= simple_form_for @project do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.submit %>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#project_end_date, #project_start_date').datepicker({ dateFormat: 'dd/mm/yy' });
+  });
+</script>

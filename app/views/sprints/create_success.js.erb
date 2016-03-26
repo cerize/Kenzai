@@ -1,0 +1,4 @@
+$('.sprints').append("<%= j render 'sprint', sprint: @sprint %>");
+
+<% @sprint = Sprint.new %>
+$("#sprint-form").html("<%= j render 'form' %>");

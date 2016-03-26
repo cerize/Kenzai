@@ -1,0 +1,4 @@
+<div id="<%= dom_id(user_story) %>">
+  <h3><%= user_story.title %></h3>
+  <div><%= raw sanitize user_story.description.gsub("\n", "<br />"), tags: %w(br) %></div>
+</div>

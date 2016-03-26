@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     resources :sprints
   end
 
+  resources :sprints, only: [] do
+    resources :user_stories, except: [:index, :show]
+  end
+
   resources :project_assignments, only: [:create, :destroy]
 
   resources :my_projects, only: [:index]

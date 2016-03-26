@@ -1,0 +1,43 @@
+<%= @sprint.title %>
+<%= @sprint.start_date %>
+<%= @sprint.end_date %>
+
+
+<!-- user stories -->
+<div class="user-stories" id="accordion">
+  <% @sprint.user_stories.each do |u| %>
+    <%= render "/user_stories/user_story", user_story: u %>
+  <% end %>
+</div>
+
+<div id="new-user-story-link">
+  <%= link_to "New User Story", new_sprint_user_story_path(@sprint), remote: true %>
+</div>
+
+
+<div id="user-story-form"></div>
+
+<script>
+$(function() {
+    $( "#accordion" )
+      .accordion({
+        header: "> div > h3",
+        animate: 200,
+        heightStyle: "content",
+        active: false,
+        collapsible: true
+      })
+      // .sortable({
+      //   axis: "y",
+      //   handle: "h3",
+      //   stop: function( event, ui ) {
+      //     // IE doesn't register the blur when sorting
+      //     // so trigger focusout handlers to remove .ui-state-focus
+      //     ui.item.children( "h3" ).triggerHandler( "focusout" );
+      //     // Refresh accordion to handle new order
+      //     $( this ).accordion( "refresh" );
+      //   }
+      // });
+  });
+</script>
+<!-- end user stories -->

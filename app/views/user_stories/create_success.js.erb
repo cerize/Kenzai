@@ -1,0 +1,5 @@
+$('.user-stories').append("<%= j render 'user_story', user_story: @user_story %>");
+$( "#accordion" ).accordion( "refresh" );
+
+$("#user-story-form").hide();
+$("#new-user-story-link").show();

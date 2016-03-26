@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
 
-  let(:user)    { FactoryGirl.create(:user) }
-  let(:user2)   { FactoryGirl.create(:user) }
+  let(:user)     { FactoryGirl.create(:user) }
+  let(:user2)    { FactoryGirl.create(:user) }
   let(:project1) { FactoryGirl.create(:project) }
 
   describe 'with user signed in' do

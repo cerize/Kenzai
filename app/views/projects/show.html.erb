@@ -1,8 +1,14 @@
 
 <h1><%= @project.title %></h1>
 
-
 <!-- sprints -->
+
+<div class="sprints">
+  <% @project.sprints.each do |s| %>
+    <%= render "/sprints/sprint", sprint: s %>
+  <% end %>
+</div>
+
 <h2>Sprints</h2>
 
 <div id="new-sprint-link">
