@@ -1,7 +1,10 @@
 
-<h1><%= @project.title %></h1>
+<div id="<%= dom_id(@project) %>">
+  <%= render 'project' %>
+</div>
 
 <!-- sprints -->
+<h2>Sprints</h2>
 
 <div class="sprints">
   <% @project.sprints.each do |s| %>
@@ -9,15 +12,10 @@
   <% end %>
 </div>
 
-<h2>Sprints</h2>
-
 <div id="new-sprint-link">
-
   <%= link_to "New Sprint", new_project_sprint_path(@project),
   remote: true %>
 </div>
 
-
 <div id="sprint-form"></div>
-
 <!-- end of sprints -->

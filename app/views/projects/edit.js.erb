@@ -1,0 +1,2 @@
+$("#<%= dom_id(@project) %> .project-details").fadeOut(1000).remove();
+$("#<%= dom_id(@project) %>").prepend("<%= j render 'form'%>")

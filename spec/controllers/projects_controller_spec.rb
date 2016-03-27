@@ -120,14 +120,14 @@ RSpec.describe ProjectsController, type: :controller do
 
     describe "#edit" do
       before do
-        # get :edit, id: campaign
+        # xrd get :edit, id: project1
       end
 
       it "renders the edit template" do
+        # expect(responde).to render_template(:edit)
       end
 
-      it "finds the project by id and sets it to @campaign instance variable" do
-      end
+
     end
 
     ##################update#########################

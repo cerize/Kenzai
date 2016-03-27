@@ -36,6 +36,8 @@ gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'cancancan', '~> 1.10'
+gem 'quiet_assets', '~> 1.1'
+
 
 group :development, :test do
   gem "rspec-rails"
@@ -49,6 +51,7 @@ group :development, :test do
   gem "hirb"
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry'
 end
 
 group :development do

@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
   before_action :authorize_management, only: [:edit, :update, :destroy]
 
 
@@ -20,7 +21,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    find_project
     if @project
       @sprint = Sprint.new
       render :show
@@ -30,15 +30,26 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.js { render :edit }
+    end
   end
 
   def update
+    respond_to do |format|
+      if @project.update project_params
+        format.js   { render :update_success }
+      else
+        format.js   { render :update_fail }
+      end
+    end
   end
 
   def destroy
+    @project.destroy
+    redirect_to my_projects_path
   end
 
-  # render nothing: true
   private
 
   def project_params
@@ -54,11 +65,5 @@ class ProjectsController < ApplicationController
       redirect_to root_path, alert: "access denied!"
     end
   end
-
-  # def authorize_view
-  #   unless can? :read, @project
-  #     redirect_to root_path, alert: "access denied!"
-  #   end
-  # end
-
-  end
+  
+end

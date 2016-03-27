@@ -16,6 +16,7 @@ class Ability
 
       #
       can :manage, Project do |project|
+        puts project.creator == user
         project.creator == user || user.is_manager?(project)
       end
 
