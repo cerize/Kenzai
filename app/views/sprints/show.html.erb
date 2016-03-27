@@ -1,6 +1,7 @@
-<%= @sprint.title %>
-<%= @sprint.start_date %>
-<%= @sprint.end_date %>
+<div id="<%= dom_id(@sprint) %>">
+  <%= render 'sprint' %>
+</div>
+
 
 
 <!-- user stories -->

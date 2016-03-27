@@ -16,7 +16,6 @@ class Ability
 
       #
       can :manage, Project do |project|
-        puts project.creator == user
         project.creator == user || user.is_manager?(project)
       end
 
@@ -24,13 +23,13 @@ class Ability
         user.projects.include? project
       end
 
-      can :manage, Sprint do |sprint|
-        sprint.project.creator == user || user.is_manager?(sprint.project)
-      end
-
-      can :read, Sprint do |sprint|
-        user.projects.include? sprint.project
-      end
+      # can :manage, Sprint do |sprint|
+      #   sprint.project.creator == user || user.is_manager?(sprint.project)
+      # end
+      #
+      # can :read, Sprint do |sprint|
+      #   user.projects.include? sprint.project
+      # end
 
 
 
