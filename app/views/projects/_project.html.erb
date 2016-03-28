@@ -7,7 +7,7 @@
     <% @project.members.each do |member| %>
     <div class="member">
       <%= member.full_name %>
-      <%= link_to "Delete",
+      <%= link_to fa_icon("remove"),
             project_assignment_path(project_id: @project, user_id: member),
             method: :delete,
             data: {confirm: "Are you sure you want to remove this team member?"} %>

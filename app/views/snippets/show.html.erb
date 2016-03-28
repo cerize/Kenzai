@@ -1,0 +1,13 @@
+<h1><%= @snippet.title %></h1>
+Created by: <%= @snippet.user.full_name %>
+<br>
+<br>
+<%= markdown(@snippet.description )%>
+
+<% if current_user == @snippet.user %>
+<%= link_to "Edit", edit_project_snippet_path(@project, @snippet) %>
+<%= link_to "Delete",
+            project_snippet_path(@project, @snippet),
+            method: :delete,
+            data: {confirm: "Are you sure you want to delete this snippet? This action cannot be undone"} %>
+<% end %>

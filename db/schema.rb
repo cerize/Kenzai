@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322160726) do
+ActiveRecord::Schema.define(version: 20160328065339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mudas", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "mudas", ["project_id"], name: "index_mudas_on_project_id", using: :btree
+  add_index "mudas", ["user_id"], name: "index_mudas_on_user_id", using: :btree
 
   create_table "project_assignments", force: :cascade do |t|
     t.integer  "user_id"
@@ -38,6 +50,18 @@ ActiveRecord::Schema.define(version: 20160322160726) do
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
+  create_table "snippets", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "snippets", ["project_id"], name: "index_snippets_on_project_id", using: :btree
+  add_index "snippets", ["user_id"], name: "index_snippets_on_user_id", using: :btree
 
   create_table "sprints", force: :cascade do |t|
     t.string   "title"
@@ -101,9 +125,13 @@ ActiveRecord::Schema.define(version: 20160322160726) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "mudas", "projects"
+  add_foreign_key "mudas", "users"
   add_foreign_key "project_assignments", "projects"
   add_foreign_key "project_assignments", "users"
   add_foreign_key "projects", "users"
+  add_foreign_key "snippets", "projects"
+  add_foreign_key "snippets", "users"
   add_foreign_key "sprints", "projects"
   add_foreign_key "task_assignments", "tasks"
   add_foreign_key "task_assignments", "users"

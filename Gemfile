@@ -30,6 +30,10 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem "font-awesome-rails"
 gem 'simple_form'
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
+# Use redcarpet to markdown input
+gem 'redcarpet'
+# Use coderay for syntax highlighting
+gem 'coderay'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

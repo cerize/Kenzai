@@ -1,0 +1,2 @@
+class MudasController < ApplicationController
+end

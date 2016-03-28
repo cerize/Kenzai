@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :projects, except: [:index] do
     resources :sprints
+    resources :snippets
+    resources :mudas
   end
 
   resources :sprints, only: [] do
