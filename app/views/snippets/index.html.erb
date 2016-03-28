@@ -1,5 +1,7 @@
 <h2>Snippets for the project "<%= @project.title %>"</h2>
 
+<%= link_to "<< Project", project_path(@project) %>
+
 <%= link_to "New Snippet", new_project_snippet_path(@project), class: "btn btn-primary" %>
 
 <% @snippets.each do |snippet| %>

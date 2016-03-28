@@ -1,0 +1,11 @@
+<h2>Mudas for the project "<%= @project.title %>"</h2>
+
+<%= link_to "<< Project", project_path(@project) %>
+
+<%= link_to "New Muda", new_project_muda_path(@project), class: "btn btn-primary" %>
+
+<% @mudas.each do |muda| %>
+  <div class="well">
+    <%= link_to muda.title, project_muda_path(@project, muda) %>
+  </div>
+<% end %>

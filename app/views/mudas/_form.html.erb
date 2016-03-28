@@ -1,0 +1,7 @@
+<%= @muda.errors.full_messages.join(", ") %>
+
+<%= simple_form_for [@project, @muda] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description, label: "Work", input_html: { rows: 10 }%>
+  <%= f.submit %>
+<% end %>

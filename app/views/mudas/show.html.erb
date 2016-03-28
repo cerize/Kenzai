@@ -1,0 +1,15 @@
+<%= link_to "<< Mudas", project_mudas_path(@project) %>
+
+<h1><%= @muda.title %></h1>
+Created by: <%= @muda.user.full_name %>
+<br>
+<br>
+<%= markdown(@muda.description )%>
+
+<% if current_user == @muda.user %>
+<%= link_to "Edit", edit_project_muda_path(@project, @muda) %>
+<%= link_to "Delete",
+            project_muda_path(@project, @muda),
+            method: :delete,
+            data: {confirm: "Are you sure you want to delete this muda? This action cannot be undone"} %>
+<% end %>
