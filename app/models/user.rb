@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  has_many :project_assignments, dependent: :nullify
+  has_many :project_assignments, dependent: :destroy
   has_many :projects, through: :project_assignments
   has_many :created_projects, foreign_key: "user_id", class_name: "Project"
 
@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}".strip.titleize
+  end
+#must create a test
+  def self.search_by_email(q)
+    where("email ILIKE ?", q)
   end
 
 #must create a test

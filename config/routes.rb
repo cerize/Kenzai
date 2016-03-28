@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :users
 
+  get '/project_member/search' => 'project_assignments#search_member', as: :search_member
+
   resources :projects, except: [:index] do
     resources :sprints
   end
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
     resources :user_stories, except: [:index, :show]
   end
 
-  resources :project_assignments, only: [:create, :destroy]
+  resources :project_assignments, only: [:new, :create, :destroy]
 
   resources :my_projects, only: [:index]
 

@@ -1,0 +1,4 @@
+<%= form_tag search_member_path(project_id: project.id), method: :get, remote: true do %>
+  <%= text_field_tag :q, params[:q], placeholder: "Search by email...", class: "search-box" %>
+  <button class='btn btn-default' style='width:40px;'> <%= fa_icon("search") %> </button>
+<% end %>

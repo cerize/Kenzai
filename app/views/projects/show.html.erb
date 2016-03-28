@@ -3,6 +3,15 @@
   <%= render 'project' %>
 </div>
 
+<%= link_to fa_icon("user-plus"), new_project_assignment_path(project_id: @project), remote: true %>
+
+<!-- search -->
+<div id="search-member-form">
+</div>
+<div id="search-member-result">
+</div>
+<!-- end -->
+
 <!-- sprints -->
 <h2>Sprints</h2>
 
