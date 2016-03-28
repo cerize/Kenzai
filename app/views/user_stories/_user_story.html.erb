@@ -1,4 +1,14 @@
 <div id="<%= dom_id(user_story) %>">
-  <h3><%= user_story.title %></h3>
-  <div><%= raw sanitize user_story.description.gsub("\n", "<br />"), tags: %w(br) %></div>
+  <div class="user-story-details">
+    <h3><%= user_story.title %></h3>
+    <div>
+      <%= raw sanitize user_story.description.gsub("\n", "<br />"), tags: %w(br) %>
+
+      <%= link_to fa_icon("edit"), edit_sprint_user_story_path(user_story.sprint, user_story), remote: true %>
+      <%= link_to fa_icon("trash"),
+      sprint_user_story_path(user_story.sprint, user_story),
+      method: :delete,
+      data: {confirm: "Are you sure you want to delete this user story? This action cannot be undone"} %>
+    </div>
+  </div>
 </div>
