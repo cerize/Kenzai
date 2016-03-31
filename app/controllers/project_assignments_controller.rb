@@ -30,4 +30,18 @@ class ProjectAssignmentsController < ApplicationController
     redirect_to project_path(@project)
   end
 
+  def add_manager
+    @project = Project.find_by_id params[:project_id]
+    @user = User.find_by_id(params[:user_id])
+    ProjectAssignment.set_as_manager(@user, @project)
+    redirect_to project_path(@project)
+  end
+
+  def remove_manager
+    @project = Project.find_by_id params[:project_id]
+    @user = User.find_by_id(params[:user_id])
+    ProjectAssignment.remove_manager(@user, @project)
+    redirect_to project_path(@project)
+  end
+
 end

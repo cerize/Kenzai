@@ -22,5 +22,13 @@ class ProjectAssignment < ActiveRecord::Base
     end
   end
 
+  def self.remove_manager(user, project)
+    project_assignment =  ProjectAssignment.find_record(user, project)
+    if project_assignment
+      project_assignment.is_manager = false
+      project_assignment.save
+    end
+  end
+
 
 end

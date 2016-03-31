@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   resources :users
 
+  post '/project_member/manager' => 'project_assignments#add_manager', as: :add_manager
+
+  post '/project_member/not_manager' => 'project_assignments#remove_manager', as: :remove_manager
+
   get '/project_member/search' => 'project_assignments#search_member', as: :search_member
 
   resources :projects, except: [:index] do

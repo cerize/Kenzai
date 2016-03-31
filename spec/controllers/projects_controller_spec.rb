@@ -188,7 +188,7 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
 
-  describe 'with not user signed in' do
+  describe 'with no user signed in' do
 
     it "redirect_to sign in page when trying to access new project page" do
       get :new

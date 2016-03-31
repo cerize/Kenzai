@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  # include AASM
+
   belongs_to :creator, class_name: "User", foreign_key: 'user_id'
 
   has_many :project_assignments, dependent: :destroy

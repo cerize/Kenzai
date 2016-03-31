@@ -42,7 +42,7 @@ gem 'coderay'
 
 gem 'cancancan', '~> 1.10'
 gem 'quiet_assets', '~> 1.1'
-
+gem "aasm"
 
 group :development, :test do
   gem "rspec-rails"
