@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328183358) do
+ActiveRecord::Schema.define(version: 20160402061736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "mudas", force: :cascade do |t|
     t.string   "title"
@@ -42,8 +58,8 @@ ActiveRecord::Schema.define(version: 20160328183358) do
   create_table "projects", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "start_date"
-    t.string   "end_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -68,8 +84,8 @@ ActiveRecord::Schema.define(version: 20160328183358) do
   create_table "sprints", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "start_date"
-    t.string   "end_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.integer  "project_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -90,8 +106,8 @@ ActiveRecord::Schema.define(version: 20160328183358) do
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "start_date"
-    t.string   "end_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.integer  "sprint_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+
   root "home#index"
 
 end

@@ -43,6 +43,8 @@ gem 'coderay'
 gem 'cancancan', '~> 1.10'
 gem 'quiet_assets', '~> 1.1'
 gem "aasm"
+gem 'delayed_job_active_record'
+gem "delayed_job_web"
 
 group :development, :test do
   gem "rspec-rails"

@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
     @project.creator = current_user
     if @project.save
       current_user.projects << @project
+      schedule_background_job
       redirect_to project_path(@project), notice: "New Project Created!"
     else
       flash[:alert] = "Project could not be created."
@@ -39,6 +40,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.update project_params
         format.js   { render :update_success }
+        schedule_background_job
       else
         format.js   { render :update_fail }
       end
@@ -65,5 +67,12 @@ class ProjectsController < ApplicationController
       redirect_to root_path, alert: "access denied!"
     end
   end
-  
+
+  def schedule_background_job
+    DetermineProjectStateJob.set(wait_until: @project.start_date).perform_later(@project)
+    DetermineProjectStateJob.set(wait_until: @project.end_date).perform_later(@project)
+    DetermineProjectStateJob.set(wait_until: @project.end_date).perform_now(@project)
+    true
+  end
+
 end
