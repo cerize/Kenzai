@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :sprints, only: [] do
     resources :user_stories, except: [:index, :show]
+    resources :comments, only: [:create, :edit, :update, :destroy]
   end
 
   resources :project_assignments, only: [:new, :create, :destroy]
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
   end
 
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+
 
   root "home#index"
 

@@ -46,3 +46,21 @@ $(function() {
   });
 </script>
 <!-- end user stories -->
+
+<!-- comments -->
+
+<%= @comment.errors.full_messages.join(", ") %>
+
+<h3>Comments</h3>
+
+<div id='comment-form'>
+  <%= render 'comments/form' %>
+</div>
+
+<div id="comments">
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', comment: comment %>
+  <% end %>
+</div>
+
+<!-- end of comments -->

@@ -25,6 +25,8 @@ class SprintsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @sprint.comments
   end
 
   def edit

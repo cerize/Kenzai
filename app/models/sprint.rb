@@ -3,6 +3,7 @@ class Sprint < ActiveRecord::Base
 
   belongs_to :project
   has_many   :user_stories, dependent: :destroy
+  has_many   :comments,     dependent: :destroy
 
   validates :title, presence: true,
                     uniqueness: {scope: :project_id}

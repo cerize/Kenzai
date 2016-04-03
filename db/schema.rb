@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403075848) do
+ActiveRecord::Schema.define(version: 20160403174241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "sprint_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "comments", ["sprint_id"], name: "index_comments_on_sprint_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -146,6 +157,8 @@ ActiveRecord::Schema.define(version: 20160403075848) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "comments", "sprints"
+  add_foreign_key "comments", "users"
   add_foreign_key "mudas", "projects"
   add_foreign_key "mudas", "users"
   add_foreign_key "project_assignments", "projects"

@@ -1,0 +1,6 @@
+<%= simple_form_for [@sprint, @comment], remote: true  do |f| %>
+
+    <%= f.input :description, label: false %>
+    <%= f.submit %>
+
+  <% end %>

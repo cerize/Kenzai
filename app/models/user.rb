@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :created_projects, foreign_key: "user_id", class_name: "Project"
   has_many :snippets, dependent: :destroy
   has_many :mudas, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   validates :first_name, presence: true
   validates :last_name, presence: true
