@@ -17,6 +17,7 @@ class SprintsController < ApplicationController
     respond_to do |format|
       if @sprint.save
         format.js { render :create_success }
+        schedule_background_job
       else
         format.js { render :create_fail }
       end
@@ -36,6 +37,7 @@ class SprintsController < ApplicationController
     respond_to do |format|
       if @sprint.update sprint_params
         format.js   { render :update_success }
+        schedule_background_job
       else
         format.js   { render :update_fail }
       end
@@ -65,6 +67,13 @@ class SprintsController < ApplicationController
     unless can? :manage, @sprint.project
       redirect_to root_path, alert: "access denied!"
     end
+  end
+
+  def schedule_background_job
+    DetermineSprintStateJob.perform_now(@sprint)
+    DetermineSprintStateJob.set(wait_until: @sprint.start_date).perform_later(@sprint)
+    DetermineSprintStateJob.set(wait_until: @sprint.end_date).perform_later(@sprint)
+    true
   end
 
 end

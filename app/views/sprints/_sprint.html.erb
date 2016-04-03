@@ -3,7 +3,7 @@
 
   <h2><%= @sprint.title %></h2>
 
-  <% if current_user.is_manager?(@sprint.project) %>
+  <% if can? :manage, (@sprint.project) %>
   <%= link_to fa_icon("edit"), edit_project_sprint_path(@sprint.project, @sprint), remote: true %>
   <%= link_to fa_icon("trash"),
   project_sprint_path(@sprint.project, @sprint),

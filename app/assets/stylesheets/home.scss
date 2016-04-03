@@ -7,7 +7,7 @@ body {
     height: 100%;
     font-family: 'Muli', sans-serif;
     color: #696969;
-    background-color: white;
+    //background-color: white;
 }
 
 html {
@@ -130,12 +130,12 @@ a {
     padding: 100px 0;
     text-align: center;
     color: white;
-    background: image-url('intro-bg-gray-darker.jpg') no-repeat bottom center scroll;
-    background-color: black;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+    //background: image-url('intro-bg-gray-darker.jpg') no-repeat bottom center scroll;
+    //background-color: black;
+    // -webkit-background-size: cover;
+    // -moz-background-size: cover;
+    // background-size: cover;
+    // -o-background-size: cover;
     .intro-body {
         display: table-cell;
         vertical-align: middle;
@@ -343,4 +343,8 @@ body {
 
 .container.top {
   margin-top: 120px;
+}
+
+.home .navbar.navbar-custom {
+  background: transparent;
 }

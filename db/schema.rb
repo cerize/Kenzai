@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402061736) do
+ActiveRecord::Schema.define(version: 20160403055204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,8 +89,10 @@ ActiveRecord::Schema.define(version: 20160402061736) do
     t.integer  "project_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "aasm_state"
   end
 
+  add_index "sprints", ["aasm_state"], name: "index_sprints_on_aasm_state", using: :btree
   add_index "sprints", ["project_id"], name: "index_sprints_on_project_id", using: :btree
 
   create_table "task_assignments", force: :cascade do |t|

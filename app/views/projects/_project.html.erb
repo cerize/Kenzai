@@ -1,5 +1,5 @@
 <div class="project-details">
-  <% if current_user.is_manager?(@project) %>
+  <% if can? :manage, @project %>
   <%= link_to fa_icon("edit"), edit_project_path(@project), remote: true %>
   <%= link_to fa_icon("trash"),
   project_path(@project),
@@ -28,7 +28,7 @@
     <div class="member col-md-4 col-sm-6 col-xm-12">
       <h4><%= member.full_name %></h4>
 
-      <% if current_user.is_manager?(@project) %>
+      <% if can? :manage, @project %>
       <%= link_to "Remove",
       project_assignment_path(project_id: @project, user_id: member),
       method: :delete, class: "btn btn-warning",

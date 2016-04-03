@@ -69,9 +69,9 @@ class ProjectsController < ApplicationController
   end
 
   def schedule_background_job
+    DetermineProjectStateJob.perform_now(@project)
     DetermineProjectStateJob.set(wait_until: @project.start_date).perform_later(@project)
     DetermineProjectStateJob.set(wait_until: @project.end_date).perform_later(@project)
-    DetermineProjectStateJob.set(wait_until: @project.end_date).perform_now(@project)
     true
   end
 

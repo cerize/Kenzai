@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
   validates :start_date, presence: true
   validates :end_date, presence: true
 
-  aasm do
+  aasm whiny_transitions: false do
     state :draft, initial: true
     state :in_progress
     state :complete
