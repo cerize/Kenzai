@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user
-  before_action :find_project, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_management, only: [:edit, :update, :destroy]
+  before_action :find_project, only: [:show, :edit, :update, :destroy, :cancel, :complete]
+  before_action :authorize_management, only: [:edit, :update, :destroy, :cancel, :complete]
 
 
   def new
@@ -49,6 +49,18 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
+    redirect_to my_projects_path
+  end
+
+  def complete
+    @project.finish!
+    @project.actual_end_date = Date.today
+    @project.save
+    redirect_to my_projects_path
+  end
+
+  def cancel
+    @project.cancel!
     redirect_to my_projects_path
   end
 

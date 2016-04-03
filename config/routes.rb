@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     resources :mudas
   end
 
+  post '/project/complete' => 'projects#complete', as: :project_complete
+  post '/project/cancel' => 'projects#cancel', as: :project_cancel
+
   resources :sprints, only: [] do
     resources :user_stories, except: [:index, :show]
   end

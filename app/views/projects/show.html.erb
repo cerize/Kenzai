@@ -3,12 +3,12 @@
 
 
 
-
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Details</a></li>
     <li><a data-toggle="tab" href="#menu1">Sprints</a></li>
     <li><a data-toggle="tab" href="#menu2">Resources</a></li>
+    <li><a data-toggle="tab" href="#menu3">Actions</a></li>
   </ul>
 
   <div class="tab-content">
@@ -55,4 +55,17 @@
       </p>
     </div>
     <!-- end of resources  -->
+
+    <!-- actions menu  -->
+    <div id="menu3" class="tab-pane fade">
+      <br>
+      <h3>Actions</h3>
+      <p>
+        <%= link_to "Project is complete!", project_complete_path(id: @project.id), method: :post, class: "btn complete" %>
+      </p>
+      <p>
+        <%= link_to "Cancel project", project_cancel_path(id: @project.id), method: :post, class: "btn cancelled" %>
+      </p>
+    </div>
+    <!-- end of actions  -->
   </div>
