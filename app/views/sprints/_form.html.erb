@@ -1,13 +1,13 @@
 <%= simple_form_for [@project, @sprint], remote: true do |f| %>
 <%= f.input :title %>
 <%= f.input :description %>
-<%= f.input :start_date, :placeholder => 'Select date' %>
-<%= f.input :end_date, :placeholder => 'Select date' %>
+<%= f.input :start_date, as: :date_time_picker %>
+<%= f.input :end_date, as: :date_time_picker %>
 <%= f.submit %>
 <% end %>
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $('#sprint_end_date, #sprint_start_date').datepicker({ dateFormat: 'dd/mm/yy' });
+    $('#sprint_end_date, #sprint_start_date').datepicker({ dateFormat: 'dd/mm/yy' }).attr("placeholder", "Select date");
   });
 </script>

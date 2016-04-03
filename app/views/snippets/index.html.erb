@@ -1,8 +1,13 @@
+<p>
+  <%= link_to fa_icon('chevron-left', text: "Project"), project_path(@project), class: "btn btn-link" %>
+</p>
+
 <h2>Snippets for the project "<%= @project.title %>"</h2>
 
-<%= link_to "<< Project", project_path(@project) %>
 
-<%= link_to "New Snippet", new_project_snippet_path(@project), class: "btn btn-primary" %>
+<p>
+  <%= link_to "New Snippet", new_project_snippet_path(@project), class: "btn btn-default" %>
+</p>
 
 <% @snippets.each do |snippet| %>
   <div class="well">

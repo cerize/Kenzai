@@ -1,4 +1,3 @@
-<div id="<%= dom_id(sprint) %>_link">
-  <%= link_to sprint.title, project_sprint_path(@project, sprint) %>
-  <hr>
+<div id="<%= dom_id(sprint) %>_link" class="well <%=  %>">
+  <%= link_to sprint.title, project_sprint_path(@project, sprint), class: "btn  btn-index" %>
 </div>

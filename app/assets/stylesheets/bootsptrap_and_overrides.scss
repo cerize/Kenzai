@@ -7,6 +7,69 @@
 //   margin-top: 50px;
 // }
 
+//Background colors
+//#EDA156 - light orange
+//#B0D7D4 - light blue
+//#D4DD82 - light green
+//#F7EF6A - fresh yellow
+//#C70025 - japan red
+
 .btn-manager {
-  background-color: #00cc00 !important;
+  background-color: #53A318 !important;
+}
+
+.btn-index {
+  width: 100%;
+}
+
+.btn-resources {
+  width: 100px;
+}
+
+.draft {
+  background-color: #D3D3D3;
+  a {
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.in_progress {
+  background-color: #465C8B;
+  color: white;
+  a {
+    color: white;
+  }
+}
+
+.complete {
+  background-color: #53A318;
+  color: white;
+  a {
+    color: white;
+  }
+}
+
+.cancelled {
+  background-color:  #73777A;
+  color: white;
+  a {
+    color: white;
+  }
+}
+
+.overdue {
+  background-color: #FD7E47;
+  color: white;
+  a {
+    color: white;
+  }
+}
+
+.member {
+  background-color: #dfdce3;
+  margin: 10px;
+  text-align: center;
+  padding: 5px;
 }

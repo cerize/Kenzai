@@ -1,7 +1,9 @@
-<%= link_to "New Project", new_project_path %>
-
+<%= link_to "New Project", new_project_path, class: "btn btn-default " %>
+<br>
+<br>
 <% @projects.each do |project|%>
-<div class="well">
-  <%= link_to project.title, project_path(project) %>
+<div class="well <%= project.aasm_state %>">
+  <%= link_to project.title, project_path(project), class: "btn  btn-index"  %>
+  <span class="pull-right"><%= project.aasm_state.humanize.upcase %></span>
 </div>
 <% end %>

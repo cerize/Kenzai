@@ -1,8 +1,10 @@
+<p>
+  <%= link_to fa_icon('chevron-left', text: "Project"), project_path(@project), class: "btn btn-link" %>
+</p>
+
 <h2>Mudas for the project "<%= @project.title %>"</h2>
 
-<%= link_to "<< Project", project_path(@project) %>
-
-<%= link_to "New Muda", new_project_muda_path(@project), class: "btn btn-primary" %>
+<%= link_to "New Muda", new_project_muda_path(@project), class: "btn btn-default" %>
 
 <% @mudas.each do |muda| %>
   <div class="well">
