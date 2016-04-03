@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :home, only: [:index]
 
-  resources :users
+  resources :users, only: [:new, :create, :show]
 
   post '/project_member/manager' => 'project_assignments#add_manager', as: :add_manager
 
