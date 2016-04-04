@@ -21,7 +21,7 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0 0 25px;
+    margin: 15 0 15px;
     text-transform: uppercase;
     font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
@@ -317,17 +317,17 @@ footer {
     }
 }
 
-::-moz-selection {
-    text-shadow: none;
-    background: #fcfcfc;
-    background: rgba(white, 0.2);
-}
+// ::-moz-selection {
+//     text-shadow: none;
+//     background: #fcfcfc;
+//     background: rgba(white, 0.2);
+// }
 
-::selection {
-    text-shadow: none;
-    background: #fcfcfc;
-    background: rgba(white, 0.2);
-}
+// ::selection {
+//     text-shadow: none;
+//     background: #fcfcfc;
+//     background: rgba(white, 0.2);
+// }
 
 img::selection {
     background: transparent;
@@ -342,9 +342,40 @@ body {
 }
 
 .container.top {
-  margin-top: 120px;
+  // margin-top: 120px;
 }
 
 .home .navbar.navbar-custom {
   background: transparent;
+}
+
+.home .navbar-custom {
+  a {
+      color: #FFFFFF;
+  }
+    .nav {
+        li {
+            a {
+                &:hover {
+                    color: rgba(255, 255, 255, 0.8);
+                    outline: none;
+                    background-color: transparent;
+                }
+                &:focus,
+                &:active {
+                    outline: none;
+                    background-color: transparent;
+                }
+            }
+            &.active {
+                outline: none;
+                a {
+                    background-color: rgba(white, 0.3);
+                    &:hover {
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
 }

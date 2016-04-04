@@ -1,0 +1,33 @@
+<p>
+  <%= link_to fa_icon('chevron-left', text: "Sprint"), project_sprint_path(@sprint.project, @sprint), class: "btn btn-link" %>
+</p>
+
+<%= @review_highlight.errors.full_messages.join(", ") %>
+
+<h3>Planning Meeting Highlights</h3>
+
+<p>
+  <%= link_to "new", new_sprint_review_highlight_path(@sprint), remote: true, class: "btn btn-default" %>
+</p>
+
+<div id='review_highlight-form'>
+
+</div>
+
+<br>
+
+<table class="table table-striped">
+  <% @review_highlights.each do |plan| %>
+  <tr>
+    <td><em><%= plan.id %></em></td>
+    <div class="">
+      <td><%= raw sanitize plan.description.gsub("\n", "<br />"), tags: %w(br) %></td>
+
+    </div>
+    <td>
+      <%= link_to fa_icon("trash"), sprint_review_highlight_path(@sprint, plan),
+                            method: :delete,
+                            data: {confirm: "Delete this highlight?"}%>
+  </tr>
+  <% end %>
+</table>

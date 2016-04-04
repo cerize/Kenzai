@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :sprints, only: [] do
     resources :user_stories, except: [:index, :show]
     resources :comments, only: [:create, :edit, :update, :destroy]
+    resources :planning_highlights, only: [:index, :new, :create, :destroy]
+    resources :review_highlights, only: [:index, :new, :create, :destroy]
   end
 
   resources :project_assignments, only: [:new, :create, :destroy]

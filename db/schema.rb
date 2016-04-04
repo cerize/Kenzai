@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403174241) do
+ActiveRecord::Schema.define(version: 20160403212641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,15 @@ ActiveRecord::Schema.define(version: 20160403174241) do
   add_index "mudas", ["project_id"], name: "index_mudas_on_project_id", using: :btree
   add_index "mudas", ["user_id"], name: "index_mudas_on_user_id", using: :btree
 
+  create_table "planning_highlights", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "sprint_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "planning_highlights", ["sprint_id"], name: "index_planning_highlights_on_sprint_id", using: :btree
+
   create_table "project_assignments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "project_id"
@@ -80,6 +89,15 @@ ActiveRecord::Schema.define(version: 20160403174241) do
 
   add_index "projects", ["aasm_state"], name: "index_projects_on_aasm_state", using: :btree
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
+  create_table "review_highlights", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "sprint_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "review_highlights", ["sprint_id"], name: "index_review_highlights_on_sprint_id", using: :btree
 
   create_table "snippets", force: :cascade do |t|
     t.string   "title"
@@ -161,9 +179,11 @@ ActiveRecord::Schema.define(version: 20160403174241) do
   add_foreign_key "comments", "users"
   add_foreign_key "mudas", "projects"
   add_foreign_key "mudas", "users"
+  add_foreign_key "planning_highlights", "sprints"
   add_foreign_key "project_assignments", "projects"
   add_foreign_key "project_assignments", "users"
   add_foreign_key "projects", "users"
+  add_foreign_key "review_highlights", "sprints"
   add_foreign_key "snippets", "projects"
   add_foreign_key "snippets", "users"
   add_foreign_key "sprints", "projects"

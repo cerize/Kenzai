@@ -1,28 +1,22 @@
 <div id="<%= dom_id(comment)%>">
   <div class="comment-description">
-    <%= comment.description %>
+    <%= raw sanitize comment.description.gsub("\n", "<br />"), tags: %w(br) %>
   </div>
-  <div class="comment-author">
-    By: <%= comment.user.full_name %>
-  </div>
-  <div class="">
-    Created: <%= comment.created_at.strftime("%F - %T") %>
-  </div>
-  <% if comment.created_at != comment.updated_at %>
-  <div class="">
+  <div class="text-muted">
+    <%= comment.user.full_name %>,
+    <%= comment.created_at.strftime("%F - %T") %>
+    <% if comment.created_at != comment.updated_at %>
     Edited on: <%= comment.updated_at.strftime("%F - %T") %>
+    <% end %>
+    <% if current_user == comment.user %>
+    <%= link_to fa_icon("trash"), sprint_comment_path(@sprint, comment),
+    method: :delete,
+    remote: true,
+    data: {confirm: "Delete comment?"}%>
+    <%= link_to fa_icon("edit"), edit_sprint_comment_path(@sprint, comment),
+    remote: true %>
+    <% end %>
   </div>
-  <% end %>
 
-  <% if current_user == comment.user %>
-    <%= link_to "Delete", sprint_comment_path(@sprint, comment),
-                          method: :delete,
-                          remote: true,
-                          data: {confirm: "Delete comment?"}%>
-    <div class="edit-comment">
-      <%= link_to "Edit", edit_sprint_comment_path(@sprint, comment),
-                          remote: true %>
-    </div>
-  <% end %>
   <hr>
 </div>

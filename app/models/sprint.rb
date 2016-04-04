@@ -2,8 +2,10 @@ class Sprint < ActiveRecord::Base
   include AASM
 
   belongs_to :project
-  has_many   :user_stories, dependent: :destroy
-  has_many   :comments,     dependent: :destroy
+  has_many   :user_stories,        dependent: :destroy
+  has_many   :comments,            dependent: :destroy
+  has_many   :planning_highlights, dependent: :destroy
+  has_many   :review_highlights,   dependent: :destroy
 
   validates :title, presence: true,
                     uniqueness: {scope: :project_id}
