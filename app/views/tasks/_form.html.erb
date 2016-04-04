@@ -1,0 +1,6 @@
+<%= simple_form_for [@sprint, @task], remote: true do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :task_id, collection: @tasks, label: "Dependence", prompt: "Select a dependence, if any", label_method: :title %>
+  <%= f.submit %>
+<% end %>

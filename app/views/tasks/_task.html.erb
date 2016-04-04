@@ -1,0 +1,14 @@
+<div id="<%= dom_id(task) %>">
+  <div class="task-details">
+    <h3><%= task.title %></h3>
+    <div>
+      <%= raw sanitize task.description.gsub("\n", "<br />"), tags: %w(br) %>
+
+      <%= link_to fa_icon("edit"), edit_sprint_task_path(task.sprint, task), remote: true %>
+      <%= link_to fa_icon("trash"),
+      sprint_task_path(task.sprint, task),
+      method: :delete,
+      data: {confirm: "Are you sure you want to delete this task? This action cannot be undone"} %>
+    </div>
+  </div>
+</div>

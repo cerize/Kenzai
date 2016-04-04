@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403212641) do
+ActiveRecord::Schema.define(version: 20160404052925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,9 +143,11 @@ ActiveRecord::Schema.define(version: 20160403212641) do
     t.integer  "sprint_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "task_id"
   end
 
   add_index "tasks", ["sprint_id"], name: "index_tasks_on_sprint_id", using: :btree
+  add_index "tasks", ["task_id"], name: "index_tasks_on_task_id", using: :btree
 
   create_table "user_stories", force: :cascade do |t|
     t.string   "title"
@@ -190,5 +192,6 @@ ActiveRecord::Schema.define(version: 20160403212641) do
   add_foreign_key "task_assignments", "tasks"
   add_foreign_key "task_assignments", "users"
   add_foreign_key "tasks", "sprints"
+  add_foreign_key "tasks", "tasks"
   add_foreign_key "user_stories", "sprints"
 end

@@ -1,66 +1,101 @@
-  <%= link_to fa_icon('chevron-left', text: "Project"), project_path(@sprint.project), class: "btn btn-link" %>
+<%= link_to fa_icon('chevron-left', text: "Project"), project_path(@sprint.project), class: "btn btn-link" %>
 
+<h2><%= @sprint.title %></h2>
 
-<div id="<%= dom_id(@sprint) %>">
-  <%= render 'sprint' %>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Details</a></li>
+    <li><a data-toggle="tab" href="#menu1">User Stories</a></li>
+    <li><a data-toggle="tab" href="#menu2">Tasks</a></li>
+    <li><a data-toggle="tab" href="#menu3">Discussion</a></li>
+  </ul>
+
+  <div class="tab-content">
+
+    <!-- details menu -->
+    <div id="home" class="tab-pane fade in active">
+      <h3>Details</h3>
+      <div id="<%= dom_id(@sprint) %>">
+        <%= render 'sprint' %>
+      </div>
+    </div>
+    <!-- end of details -->
+
+    <!-- user stories menu  -->
+    <div id="menu1" class="tab-pane fade">
+      <h3>User Stories</h3>
+      <div id="new-user-story-link">
+        <%= link_to "New User Story", new_sprint_user_story_path(@sprint), class: "btn btn-default",remote: true %>
+      </div>
+
+      <div class="user-stories accordion">
+        <% @sprint.user_stories.each do |u| %>
+        <%= render "/user_stories/user_story", user_story: u %>
+        <% end %>
+      </div>
+
+      <div id="user-story-form"></div>
+    </div>
+    <!-- end of user stories  -->
+
+    <!-- tasks menu  -->
+    <div id="menu2" class="tab-pane fade">
+      <div id="new-task-link">
+        <%= link_to "New Task", new_sprint_task_path(@sprint), class: "btn btn-default",remote: true %>
+      </div>
+      <div class="tasks accordion">
+        <% @sprint.tasks.each do |t| %>
+        <%= render "/tasks/task", task: t %>
+        <% end %>
+      </div>
+
+      <div id="task-form"></div>
+    </div>
+    <!-- end of taks  -->
+
+  <!-- discussion menu  -->
+  <div id="menu3" class="tab-pane fade">
+    <%= @comment.errors.full_messages.join(", ") %>
+
+    <h3>Discussion</h3>
+
+    <div id='comment-form'>
+      <%= render 'comments/form' %>
+    </div>
+
+    <div id="comments">
+      <% @comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+      <% end %>
+    </div>
+  </div>
+  <!-- end of discussion  -->
+
 </div>
 
 
-
-<!-- user stories -->
-<h3>User Stories</h3>
-<div class="user-stories" id="accordion">
-  <% @sprint.user_stories.each do |u| %>
-    <%= render "/user_stories/user_story", user_story: u %>
-  <% end %>
-</div>
-
-<div id="new-user-story-link">
-  <%= link_to "New User Story", new_sprint_user_story_path(@sprint), class: "btn btn-default",remote: true %>
-</div>
-
-
-<div id="user-story-form"></div>
-
+<!-- accordion -->
 <script>
 $(function() {
-    $( "#accordion" )
-      .accordion({
-        header: "> div > div > h3",
-        animate: 200,
-        heightStyle: "content",
-        active: false,
-        collapsible: true
-      })
-      // Refresh accordion to handle new order
-      // $( this ).accordion( "refresh" );
-      // .sortable({
-      //   axis: "y",
-      //   handle: "h3",
-      //   stop: function( event, ui ) {
-      //     // IE doesn't register the blur when sorting
-      //     // so trigger focusout handlers to remove .ui-state-focus
-      //     ui.item.children( "h3" ).triggerHandler( "focusout" );
-      //   }
-      // });
-  });
+  $( ".accordion" )
+  .accordion({
+    header: "> div > div > h3",
+    animate: 200,
+    heightStyle: "content",
+    active: false,
+    collapsible: true
+  })
+  // Refresh accordion to handle new order
+  // $( this ).accordion( "refresh" );
+  // .sortable({
+  //   axis: "y",
+  //   handle: "h3",
+  //   stop: function( event, ui ) {
+  //     // IE doesn't register the blur when sorting
+  //     // so trigger focusout handlers to remove .ui-state-focus
+  //     ui.item.children( "h3" ).triggerHandler( "focusout" );
+  //   }
+  // });
+});
 </script>
-<!-- end user stories -->
-
-<!-- comments -->
-
-<%= @comment.errors.full_messages.join(", ") %>
-
-<h3>Discussion</h3>
-
-<div id='comment-form'>
-  <%= render 'comments/form' %>
-</div>
-
-<div id="comments">
-  <% @comments.each do |comment| %>
-    <%= render 'comments/comment', comment: comment %>
-  <% end %>
-</div>
-
-<!-- end of comments -->
+<!-- end accordion -->

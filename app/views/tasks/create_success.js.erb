@@ -1,0 +1,5 @@
+$('.tasks').append("<%= j render 'task', task: @task %>");
+$( ".accordion" ).accordion( "refresh" );
+
+$("#task-form").hide();
+$("#new-task-link").show();

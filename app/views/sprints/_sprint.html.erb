@@ -1,7 +1,7 @@
 
 <div class="sprint-details">
 
-  <h2><%= @sprint.title %></h2>
+  
 
   <% if can? :manage, (@sprint.project) %>
   <%= link_to fa_icon("edit"), edit_project_sprint_path(@sprint.project, @sprint), remote: true %>
