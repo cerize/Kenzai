@@ -6,11 +6,24 @@ class TasksController < ApplicationController
 
   def new
     @task  = Task.new
-    @tasks = Task.all
+    @tasks = @sprint.tasks
     respond_to do |format|
       format.js { render :new }
     end
   end
+
+  # will render the task tree
+  def index
+    @tasks = @sprint.tasks
+    respond_to do |format|
+      format.html { render }
+      format.json { render }
+    end
+  end
+
+  # def tree_data
+  #   render json:
+  # end
 
   def create
     @task   = Task.new task_params

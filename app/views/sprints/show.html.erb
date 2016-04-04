@@ -43,6 +43,11 @@
       <div id="new-task-link">
         <%= link_to "New Task", new_sprint_task_path(@sprint), class: "btn btn-default",remote: true %>
       </div>
+
+      <div id="task-tree">
+        <%= link_to "Task tree", sprint_tasks_path(@sprint), class: "btn btn-default"%>
+      </div>
+
       <div class="tasks accordion">
         <% @sprint.tasks.each do |t| %>
         <%= render "/tasks/task", task: t %>
