@@ -11,5 +11,7 @@
   <%= submit_tag "Sign In", class: "btn btn-primary" %>
 <% end %>
 
-
-<%= link_to "Join", new_user_path %>
+<p>
+  Do not have an account?
+  <%= link_to "Sign up", new_user_path, class: "btn btn-link" %>
+</p>

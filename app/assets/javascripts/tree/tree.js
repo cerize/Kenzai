@@ -1,38 +1,3 @@
-var treeData = {
-  "root": {
-    "id": 16,
-    "title": "SPRINT 3",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "children": [{
-      "id": 1,
-      "title": "aaaaa",
-      "description": "aaaaaaaaaaaa",
-      "children": [{
-        "id": 2,
-        "title": "bbbbbbbb",
-        "description": "bbbbbbbbbbb",
-        "children": [{
-          "id": 4,
-          "title": "ccccccc",
-          "description": "cccccccc",
-          "children": []
-        }]
-      }, {
-        "id": 3,
-        "title": "test with dependence",
-        "description": "fffafsdf",
-        "children": []
-      }]
-    }, {
-      "id": 5,
-      "title": "dsdsad",
-      "description": "asdsad",
-      "children": []
-    }]
-  }
-};
-
-
 var raio = 30;
 var space = 30;
 var heightSpace = -150;
@@ -204,8 +169,10 @@ function startBuildTree(obj) {
   createLines(group, 0);
 }
 
+var sprintId = $("#sprint-id").html()
+
 $.ajax({
-  url: "/sprints/16/tasks.json",
+  url: "/sprints/" + sprintId + "/tasks.json",
   method: "GET",
   success: function(data){
     startBuildTree(data.root);

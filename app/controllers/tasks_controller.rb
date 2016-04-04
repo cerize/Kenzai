@@ -21,9 +21,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # def tree_data
-  #   render json:
-  # end
 
   def create
     @task   = Task.new task_params
