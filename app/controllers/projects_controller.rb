@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
   def show
     if @project
       @sprint = Sprint.new
+      @sprint = @project.sprints.order(created_at: :desc)
       render :show
     else
       redirect_to root_path, alert: "Project Not Found"
