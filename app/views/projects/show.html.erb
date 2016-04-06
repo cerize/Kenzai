@@ -32,7 +32,7 @@
       <br>
       <br>
       <div class="sprints">
-        <% @project.sprints.each do |s| %>
+        <% @sprints.each do |s| %>
         <%= render "/sprints/sprint_link", sprint: s %>
         <% end %>
       </div>
