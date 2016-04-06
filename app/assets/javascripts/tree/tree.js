@@ -3,10 +3,12 @@ var space = 30;
 var heightSpace = -150;
 var startY = 15;
 var timeTransiction = 600;
+var baseLeaveLink = "";
+var basePickLink = "";
 var stage = d3.select("#chart")
   .append("svg")
-  .attr("width", 800)
-  .attr("height", 600);
+  .attr("width", 1360)
+  .attr("height", 700);
 stage.append("svg:defs")
   .append("svg:marker")
   .attr("id", "arrow")
@@ -41,13 +43,11 @@ function translateAlong(path) {
     var pe = path.getPointAtLength(l);
     var angl = Math.atan2(pe.y - ps.y, pe.x - ps.x) * (180 / Math.PI) - 90;
     var rot_tran = "rotate(" + angl + ")";
-  return function(d, i, a) {
-    console.log(d);
-
-    return function(t) {
-      var p = path.getPointAtLength(t * l);
-      return "translate(" + p.x + "," + p.y + ") " + rot_tran;
-    };
+    return function(d, i, a) {
+      return function(t) {
+        var p = path.getPointAtLength(t * l);
+        return "translate(" + p.x + "," + p.y + ") " + rot_tran;
+      };
   };
 }
 
@@ -113,7 +113,16 @@ function printSpace(level) {
   }
   return result;
 }
-
+function setBaseLinks() {
+  if (baseLeaveLink === "") {
+    baseLeaveLink = $("#taskModal #modal-leave").attr("href");
+    baseLeaveLink = baseLeaveLink.substr(0, baseLeaveLink.lastIndexOf("/") + 1);
+  }
+  if (basePickLink === "") {
+    basePickLink = $("#taskModal #modal-pick").attr("href");
+    basePickLink = basePickLink.substr(0, basePickLink.lastIndexOf("=") + 1);
+  }
+}
 function createCircle(baseGroup, obj, level) {
   var data = [];
   data.push(obj);
@@ -125,8 +134,39 @@ function createCircle(baseGroup, obj, level) {
     .attr("r", raio)
     .attr("cx", raio)
     .attr("cy", raio)
-    .on("click", function() {
-      alert(obj.title);
+    .on("click", function(d) {
+      var users = "";
+      for (var i = 0; i < d.users.length; i++) {
+        if (users !== "")
+          users += ", ";
+        users += d.users[i].name;
+      }
+      var description = d.description;
+      if (users !== "")
+        description += "<div>" + users + "</div>";
+      setBaseLinks();
+      $("#taskModal .modal-title").html(d.title)
+      $("#taskModal .modal-body").html(description)
+      $("#taskModal #modal-leave").attr("href", baseLeaveLink + d.id + "?source=tree");
+      $("#taskModal #modal-pick").attr("href", basePickLink + d.id + "&source=tree");
+      $("#taskModal #modal-complete").attr("href", "/tasks/complete?id=" + d.id);
+      if (d.aasm_state !== "complete") {
+        if (d.on_task) {
+          $("#taskModal #modal-leave").show();
+          $("#taskModal #modal-pick").hide();
+          $("#taskModal #modal-complete").show();
+        } else {
+          $("#taskModal #modal-leave").hide();
+          $("#taskModal #modal-pick").show();
+          $("#taskModal #modal-complete").show();
+        }
+
+      } else {
+        $("#taskModal #modal-leave").hide();
+        $("#taskModal #modal-pick").hide();
+        $("#taskModal #modal-complete").hide();
+      }
+      $("#taskModal").modal("show");
     })
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide)
@@ -140,7 +180,7 @@ function buidTree(obj, baseGroup, level) {
   for (var i = 0; i < obj.length; i++) {
     var group = baseGroup.append("g");
     var circle = createCircle(group, obj[i], level);
-    console.log(printSpace(level) + obj[i].title);
+    //console.log(printSpace(level) + obj[i].title);
     buidTree(obj[i].children, group, level + 1);
     var circles = group.select("circles");
     group.attr("transform", "translate("+x+","+y+")");
@@ -159,8 +199,8 @@ function startBuildTree(obj) {
   var group = stage.append("g");
   var circle = createCircle(group, obj, 0);
   buidTree(obj.children, group, 1);
-  var x = (800 - group.node().getBoundingClientRect().width) / 2;
-  var y = 600 - (raio * 2);
+  var x = (1360 - group.node().getBoundingClientRect().width) / 2;
+  var y = 700 - (raio * 2);
   group.attr("transform", "translate("+x+","+y+")");
   circle.attr("cx", group.node().getBoundingClientRect().width/2);
   circle.transition()

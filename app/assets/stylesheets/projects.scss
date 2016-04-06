@@ -1,3 +1,44 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+circle {
+  // fill: #712979;
+  // fill: #FFE89E;
+  fill: #f7ef6a;
+  fill-opacity: .4;
+  stroke: #6D6D6D;
+  stroke-width: 2px;
+}
+
+g {
+title {
+  color: white;
+
+}
+}
+
+.leaf circle {
+  fill: white;
+  fill-opacity: 1;
+}
+
+.complete circle {
+  fill: #93c178 !important;
+  fill-opacity: 1;
+}
+
+.in_progress circle {
+  fill: #9EACC9;
+  fill-opacity: 1;
+}
+
+.created circle {
+  fill: #dfdce3;
+  fill-opacity: 1;
+}
+
+text {
+  font: 12px sans-serif;
+  fill: #333333;
+}

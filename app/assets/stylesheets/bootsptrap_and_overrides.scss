@@ -14,6 +14,20 @@
 //#D4DD82 - light green
 //#F7EF6A - fresh yellow
 //#C70025 - japan red
+svg {
+  display: block;
+  margin: auto;
+
+}
+
+path {
+  fill: #6D6D6D;
+}
+
+
+.line {
+  stroke: #6D6D6D !important;
+}
 .accordion .ui-accordion-content {
   width: 100%;
   background-color: #f3f3f3;
@@ -45,7 +59,7 @@
 
 .in_progress {
   background-color: #6F8EAB !important;
-  fill: #465C8B;
+  fill: blue;
   color: white;
   a {
     color: white;
@@ -54,7 +68,7 @@
 
 .complete {
   background-color: #A2B33B;
-  fill: #A2B33B;
+  fill: green;
   color: white;
   a {
     color: white !important;
@@ -79,7 +93,7 @@
 }
 
 .created {
-  fill: #F7EF6A;
+  fill: #dfdce3;
 }
 
 .member {

@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
   before_action :authenticate_user
-  before_action :find_sprint
-  before_action :find_task, only: [:edit, :update, :destroy]
-  before_action :authorize_management
+  before_action :find_sprint, except: [:complete]
+  before_action :find_task, only: [:edit, :update, :destroy, :complete]
+  before_action :authorize_management, except: [:complete]
 
   def new
     @task  = Task.new
@@ -53,6 +53,15 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     redirect_to project_sprint_path(@sprint.project, @sprint)
+  end
+
+  def complete
+    @sprint = @task.sprint
+    @task.finish!
+    respond_to do |format|
+      format.html { redirect_to sprint_tasks_path(@sprint) }
+      format.js   { render }
+    end
   end
 
   private

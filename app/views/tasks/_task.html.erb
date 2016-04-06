@@ -3,7 +3,7 @@
     <h3><%= task.title %></h3>
     <div>
       <%= raw sanitize task.description.gsub("\n", "<br />"), tags: %w(br) %>
-
+<%= task.aasm_state %>
 
       <div class="">
         <% task.users.each do |user|%>
@@ -12,10 +12,16 @@
       </div>
 
       <p>
-        <% if task.users.exists?(current_user)  %>
-        <%= link_to "Leave", task_assignment_path(task), method: :delete, remote: true, class: "btn btn-link overdue" %>
-        <% else %>
-        <%= link_to "Pick", task_assignments_path(task_id: task), method: :post, remote: true, class: "btn btn-link complete" %>
+
+        <% if task.aasm_state != "complete"  %>
+          <% if task.users.exists?(current_user)%>
+          <%= link_to "Leave", task_assignment_path(task), method: :delete, remote: true, class: "btn btn-link overdue" %>
+          <% else %>
+          <%= link_to "Pick", task_assignments_path(task_id: task), method: :post, remote: true, class: "btn btn-link complete" %>
+          <% end %>
+          <p>
+            <%= link_to "Task is complete!", task_complete_path(id: task.id, sprint_id: task.sprint), method: :post, class: "btn complete", remote: true %>
+          </p>
         <% end %>
       </p>
 

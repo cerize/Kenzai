@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get '/project_member/search' => 'project_assignments#search_member', as: :search_member
 
+  get '/project/map' => 'projects#map', as: :project_map
+
   resources :projects, except: [:index] do
     resources :sprints
     resources :snippets
@@ -18,6 +20,8 @@ Rails.application.routes.draw do
 
   post '/project/complete' => 'projects#complete', as: :project_complete
   post '/project/cancel' => 'projects#cancel', as: :project_cancel
+
+  post '/tasks/complete' => 'tasks#complete', as: :task_complete
 
   resources :sprints, only: [] do
     resources :user_stories, except: [:index, :show]

@@ -18,8 +18,13 @@ class Task < ActiveRecord::Base
     end
 
     event :finish do
-      transitions from: :in_progress, to: :complete
+      transitions from: [:in_progress, :created], to: :complete
     end
+
+    event :go_back do
+      transitions from: :in_progress, to: :created
+    end
+
   end
 
 end

@@ -1,3 +1,6 @@
+<div >
+  <h3><%= @sprint.title %></h3>
+</div>
 
   <div id="chart"></div>
 
@@ -5,4 +8,26 @@
     <%= @sprint.id %>
   </div>
 
+
+
 <%= javascript_include_tag "tree/tree" %>
+
+<!-- Modal -->
+<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modal-task-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= link_to "Leave", task_assignment_path(0), method: :delete, class: "btn btn-link overdue", id: "modal-leave" %>
+        <%= link_to "Pick", task_assignments_path(task_id: 0), method: :post, class: "btn btn-link complete", id: "modal-pick" %>
+        <%= link_to "Task is complete!", task_complete_path(id: 0), method: :post, class: "btn complete", id: "modal-complete"%>
+      </div>
+    </div>
+  </div>
+</div>

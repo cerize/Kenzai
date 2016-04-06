@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user
-  before_action :find_project, only: [:show, :edit, :update, :destroy, :cancel, :complete]
+  before_action :find_project, only: [:show, :edit, :update, :destroy, :cancel, :complete, :map]
   before_action :authorize_management, only: [:edit, :update, :destroy, :cancel, :complete]
 
 
@@ -62,6 +62,13 @@ class ProjectsController < ApplicationController
   def cancel
     @project.cancel!
     redirect_to my_projects_path
+  end
+
+  def map
+    respond_to do |format|
+      format.html { render }
+      format.json { render }
+    end
   end
 
   private

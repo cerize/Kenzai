@@ -5,8 +5,10 @@ class TaskAssignmentsController < ApplicationController
     @user = current_user
     @user.tasks << @task
     @sprint = @task.sprint
+    @task.start!
     respond_to do |format|
-        format.js { render :pick }
+      format.html {redirect_to sprint_tasks_path(@sprint)}
+      format.js { render :pick }
     end
   end
 
@@ -14,7 +16,11 @@ class TaskAssignmentsController < ApplicationController
     @task = Task.find_by_id params[:id]
     @user = current_user
     @user.tasks.destroy(@task)
+    if @task.users == []
+      @task.go_back!
+    end
     respond_to do |format|
+      format.html {redirect_to sprint_tasks_path(@task.sprint)}
       format.js { render :leave }
     end
 
