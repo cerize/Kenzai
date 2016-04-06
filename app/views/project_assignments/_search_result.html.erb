@@ -1,2 +1,2 @@
 <%= @user.full_name %>
-<%= link_to "Add User", project_assignments_path(user_id: @user, project_id: @project), method: :post %>
+<%= link_to "Add User", project_assignments_path(user_id: @user, project_id: @project), method: :post, class: "btn btn-link" %>

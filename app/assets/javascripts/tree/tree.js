@@ -129,7 +129,8 @@ function createCircle(baseGroup, obj, level) {
       alert(obj.title);
     })
     .on('mouseover', tip.show)
-    .on('mouseout', tip.hide);
+    .on('mouseout', tip.hide)
+    .classed(obj.aasm_state, true);
 }
 
 function buidTree(obj, baseGroup, level) {

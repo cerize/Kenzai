@@ -31,12 +31,12 @@
       <% if can? :manage, @project %>
       <%= link_to "Remove",
       project_assignment_path(project_id: @project, user_id: member),
-      method: :delete, class: "btn btn-warning",
+      method: :delete, class: "btn btn-link overdue",
       data: {confirm: "Are you sure you want to remove this team member?"} %>
       <% if member.is_manager?(@project) %>
-      <%=  link_to "Manager", remove_manager_path(project_id: @project, user_id: member), method: :post, :class => "btn btn-default btn-manager", 'data-toggle' => 'tooltip', :title => 'Remove manager'%>
+      <%=  link_to "Manager", remove_manager_path(project_id: @project, user_id: member), method: :post, class: "btn btn-link complete", 'data-toggle' => 'tooltip', :title => 'Remove manager'%>
       <% else %>
-      <%=  link_to "Manager", add_manager_path(project_id: @project, user_id: member), method: :post, :class => "btn btn-default", 'data-toggle' => 'tooltip', :title => 'Set as manager'%>
+      <%=  link_to "Set as Manager", add_manager_path(project_id: @project, user_id: member), method: :post, :class => "btn btn-link", 'data-toggle' => 'tooltip', :title => 'Set as manager'%>
       <% end %>
       <% end %>
     </div>

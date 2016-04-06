@@ -1,4 +1,4 @@
-$("#<%= dom_id(@task) %>").replaceWith("<%= j render 'task', task: @task %>");
+$("#<%= dom_id(@task) %>").replaceWith("<%= j render 'tasks/task', task: @task %>");
 $( ".accordion" ).accordion( "refresh" );
 $( ".accordion" ).accordion({
   active: false

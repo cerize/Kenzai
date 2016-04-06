@@ -27,7 +27,7 @@
       <div id="new-user-story-link">
         <%= link_to "New User Story", new_sprint_user_story_path(@sprint), class: "btn btn-default",remote: true %>
       </div>
-
+      <br>
       <div class="user-stories accordion">
         <% @sprint.user_stories.each do |u| %>
         <%= render "/user_stories/user_story", user_story: u %>
@@ -40,14 +40,14 @@
 
     <!-- tasks menu  -->
     <div id="menu2" class="tab-pane fade">
-      <div id="new-task-link">
-        <%= link_to "New Task", new_sprint_task_path(@sprint), class: "btn btn-default",remote: true %>
-      </div>
-
-      <div id="task-tree">
-        <%= link_to "Task tree", sprint_tasks_path(@sprint), class: "btn btn-default"%>
-      </div>
-
+        <div id="new-task-link" class="div-inline">
+          <%= link_to "New Task", new_sprint_task_path(@sprint), class: "btn btn-default",remote: true %>
+        </div>
+        <div id="task-tree" class="div-inline">
+          <%= link_to fa_icon("area-chart", text: "Task tree"), sprint_tasks_path(@sprint), class: "btn btn-default"%>
+        </div>
+      <br>
+      <br>
       <div class="tasks accordion">
         <% @sprint.tasks.each do |t| %>
         <%= render "/tasks/task", task: t %>
@@ -67,7 +67,7 @@
     <div id='comment-form'>
       <%= render 'comments/form' %>
     </div>
-
+    <br>
     <div id="comments">
       <% @comments.each do |comment| %>
       <%= render 'comments/comment', comment: comment %>

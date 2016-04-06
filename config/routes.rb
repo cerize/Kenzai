@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     # get '/sprints/:sprint_id/tasks/tree' => 'tasks#tree_data', as: :task_tree
 
   resources :project_assignments, only: [:new, :create, :destroy]
-  resources :task_assignments, only: [:new, :create, :destroy]
+  resources :task_assignments, only: [:create, :destroy]
 
   resources :my_projects, only: [:index]
 

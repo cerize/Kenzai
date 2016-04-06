@@ -1,9 +1,5 @@
-// $("#<%= dom_id(@user_story) %>").hide().remove()
-// $(".user-stories").append("<%= j render 'user_story', user_story: @user_story %>");
-// $( "#accordion" ).accordion( "refresh" );
-// $( "#accordion" ).accordion({
-//   active: -1
-// });
-
-
-document.location.reload(true);
+$("#<%= dom_id(@user_story) %>").replaceWith("<%= j render 'user_story', user_story: @user_story %>");
+$( ".accordion" ).accordion( "refresh" );
+$( ".accordion" ).accordion({
+  active: false
+});

@@ -1,8 +1,6 @@
 
 <h1><%= @project.title %></h1>
 
-
-
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Details</a></li>
@@ -49,7 +47,7 @@
         <%= link_to "Snippets", project_snippets_path(@project), class: "btn btn-default" %>
       </p>
       <p>
-        <%= link_to "Muda", project_mudas_path(@project), class: "btn btn-default btn-resources" %>
+        <%= link_to fa_icon("bug", text: "Muda"), project_mudas_path(@project), class: "btn btn-default btn-resources" %>
       </p>
     </div>
     <!-- end of resources  -->

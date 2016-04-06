@@ -1,3 +1,4 @@
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 //@import url(https://fonts.googleapis.com/css?family=Muli);
@@ -13,9 +14,16 @@
 //#D4DD82 - light green
 //#F7EF6A - fresh yellow
 //#C70025 - japan red
+.accordion .ui-accordion-content {
+  width: 100%;
+  background-color: #f3f3f3;
+  color: #777;
+  font-size: 10pt;
+  line-height: 16pt;
+}
 
-.btn-manager {
-  background-color: #53A318 !important;
+.accordion .ui-accordion-header  {
+  background-image: none;
 }
 
 .btn-index {
@@ -27,7 +35,7 @@
 }
 
 .draft {
-  background-color: #D3D3D3;
+  background-color: #D9D9D9;
   a {
     &:hover {
       color: white;
@@ -36,7 +44,8 @@
 }
 
 .in_progress {
-  background-color: #465C8B;
+  background-color: #6F8EAB !important;
+  fill: #465C8B;
   color: white;
   a {
     color: white;
@@ -44,27 +53,33 @@
 }
 
 .complete {
-  background-color: #53A318;
+  background-color: #A2B33B;
+  fill: #A2B33B;
   color: white;
   a {
-    color: white;
+    color: white !important;
+    &:hover {
+    }
   }
 }
 
 .cancelled {
-  background-color:  #73777A;
+  background-color:  #D9D9D9;
+  a {
+    text-decoration: line-through;
+  }
+}
+
+.overdue {
+  background-color: #DE6868;
   color: white;
   a {
     color: white;
   }
 }
 
-.overdue {
-  background-color: #FD7E47;
-  color: white;
-  a {
-    color: white;
-  }
+.created {
+  fill: #F7EF6A;
 }
 
 .member {
@@ -72,4 +87,8 @@
   margin: 10px;
   text-align: center;
   padding: 5px;
+}
+
+.div-inline {
+  display: inline-block;
 }

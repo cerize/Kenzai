@@ -3,6 +3,7 @@ def get_children(json, children)
     json.id child.id
     json.title child.title
     json.description child.description
+    json.aasm_state child.aasm_state
     get_children(json, child.children)
   end
 end
@@ -12,5 +13,6 @@ json.root do
   json.id @sprint.id
   json.title @sprint.title
   json.description @sprint.description
+  json.aasm_state @sprint.aasm_state
   get_children(json, nodes)
 end

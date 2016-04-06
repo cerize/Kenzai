@@ -5,6 +5,8 @@ class Task < ActiveRecord::Base
 
   belongs_to :node,     class_name: "Task", foreign_key: "task_id"
   has_many   :children, class_name: "Task", foreign_key: "task_id"
+  has_many :task_assignments, dependent: :destroy
+  has_many :users, through: :task_assignments
 
   aasm whiny_transitions: false do
     state :created, initial: true
