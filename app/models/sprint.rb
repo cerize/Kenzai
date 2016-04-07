@@ -7,8 +7,7 @@ class Sprint < ActiveRecord::Base
   has_many   :comments,            dependent: :destroy
   has_many   :planning_highlights, dependent: :destroy
   has_many   :review_highlights,   dependent: :destroy
-  has_many   :task_assignments,    dependent: :destroy
-  has_many   :users,               through: :task_assignments
+
 
   validates :title, presence: true,
                     uniqueness: {scope: :project_id}

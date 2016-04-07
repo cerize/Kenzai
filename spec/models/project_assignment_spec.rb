@@ -6,7 +6,6 @@ RSpec.describe ProjectAssignment, type: :model do
   let(:project)    { FactoryGirl.create(:project)}
 
   describe "Validations" do
-
     it "requires a user_id" do
       pa = ProjectAssignment.new
       pa.valid?
@@ -25,6 +24,17 @@ RSpec.describe ProjectAssignment, type: :model do
       pa2.valid?
       expect(pa2.errors).to have_key(:user_id)
     end
+  end
+
+  describe "Associations" do
+    it "belongs_to user" do
+      expect(ProjectAssignment.reflect_on_association(:user).macro).to eq(:belongs_to)
+    end
+
+    it "belongs_to project" do
+      expect(ProjectAssignment.reflect_on_association(:project).macro).to eq(:belongs_to)
+    end
+  end
 
   describe ".find_record" do
     it "returns the project_assignment record" do
@@ -44,7 +54,6 @@ RSpec.describe ProjectAssignment, type: :model do
     end
   end
 
-  end
 
 
 

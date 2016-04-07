@@ -1,3 +1,4 @@
+
 class DetermineProjectStateJob < ActiveJob::Base
   queue_as :default
 

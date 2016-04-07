@@ -53,6 +53,40 @@ RSpec.describe User, type: :model do
 
   end
 
+  describe "Associations" do
+    it "has many :project_assignments" do
+      expect(User.reflect_on_association(:project_assignments).macro).to eq(:has_many)
+    end
+
+    it "has many :projects" do
+      expect(User.reflect_on_association(:projects).macro).to eq(:has_many)
+    end
+
+    it "has many :task_assignments" do
+      expect(User.reflect_on_association(:task_assignments).macro).to eq(:has_many)
+    end
+
+    it "has many :tasks" do
+      expect(User.reflect_on_association(:tasks).macro).to eq(:has_many)
+    end
+
+    it "has many :created_projects" do
+      expect(User.reflect_on_association(:created_projects).macro).to eq(:has_many)
+    end
+
+    it "has many :snippets" do
+      expect(User.reflect_on_association(:snippets).macro).to eq(:has_many)
+    end
+
+    it "has many mudas" do
+      expect(User.reflect_on_association(:mudas).macro).to eq(:has_many)
+    end
+    
+    it "has many comments" do
+      expect(User.reflect_on_association(:comments).macro).to eq(:has_many)
+    end
+  end
+
     describe ".full_name" do
       it "concatenates the first name and last name" do
         u = FactoryGirl.build(:user)

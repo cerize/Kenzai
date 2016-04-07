@@ -15,11 +15,11 @@ RSpec.describe MyProjectsController, type: :controller do
       expect(response).to render_template(:index)
     end
 
-    it "it fetches all user's projects and assigns them to @projects" do
+    it "it fetches all user's projects and assigns them to @projects in created_at: desc order" do
       user.projects << p1
       user.projects << p2
       get :index
-      expect(assigns(:projects)).to eq([p1, p2])
+      expect(assigns(:projects)).to eq([p2, p1])
     end
 
   end
