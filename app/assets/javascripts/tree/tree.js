@@ -1,4 +1,4 @@
-var raio = 30;
+ var raio = 30;
 var space = 30;
 var heightSpace = -150;
 var startY = 15;
